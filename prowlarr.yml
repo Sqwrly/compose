@@ -1,0 +1,19 @@
+---
+version: "2.1"
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    environment:
+      - PUID=666
+      - PGID=666
+      - TZ=America/New_York
+    volumes:
+      - /local-mirror1/docker/prowlarr:/config
+#    ports:
+#      - 9696:9696
+    restart: unless-stopped
+networks:
+  default:
+    name: MediaBackend
+    external: true
