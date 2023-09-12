@@ -1,0 +1,20 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=666
+      - PGID=666
+      - TZ=America/New_York
+    volumes:
+      - /local-mirror1/docker/radarr:/config
+      - /mnt/storage/shared/Media:/Media
+#    ports:
+#      - 7878:7878
+    restart: unless-stopped
+networks:
+  default:
+    name: MediaBackend
+    external: true
